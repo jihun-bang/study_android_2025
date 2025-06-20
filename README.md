@@ -1,1 +1,1 @@
-# 42dot_live_practice
+# Study for Android
