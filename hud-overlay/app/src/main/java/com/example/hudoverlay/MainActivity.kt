@@ -4,44 +4,25 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import com.example.hudoverlay.feature.mapoverlay.composable.MapOverlayScreen
 import com.example.hudoverlay.ui.theme.HudOverlayTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+/**
+ * 앱의 메인 액티비티
+ * 지도 오버레이와 속도 HUD를 표시하는 진입점
+ */
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+        enableEdgeToEdge() // 엣지 투 엣지 UI를 활성화하여 전체 화면 사용
+        
         setContent {
             HudOverlayTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+                // 테마가 적용된 메인 컨테이너 Surface
+                MapOverlayScreen()
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    HudOverlayTheme {
-        Greeting("Android")
     }
 }

@@ -18,6 +18,79 @@
 
 ---
 
+## 구현 내용
+
+### 주요 기능
+- Google Maps를 사용한 지도 표시 및 초기화
+- 차량의 현재 위치를 마커로 표시
+- 차량 이동 경로를 Polyline으로 표시
+- 현재 속도를 HUD로 화면 상단에 표시
+- 속도에 따라 Polyline 및 HUD 색상 변경 (보너스 과제 B-1)
+
+### 아키텍처 
+클린 아키텍처와 MVVM 패턴을 적용하여 구현했습니다.
+
+```mermaid
+graph TD
+    A[MainActivity] --> B[MapOverlayScreen]
+    B --> C[MapOverlayViewModel]
+    C --> D[GetCarLocationStreamUseCase]
+    D --> E[CarLocationRepository]
+    E --> F[MockCarLocationSource]
+    
+    subgraph UI Layer
+    A
+    B
+    end
+    
+    subgraph Presentation Layer
+    C
+    end
+    
+    subgraph Domain Layer
+    D
+    end
+    
+    subgraph Data Layer
+    E
+    F
+    end
+```
+
+### 주요 컴포넌트 설명
+
+#### 데이터 계층 (Data Layer)
+- **CarLocation**: 차량 위치 및 속도 정보를 담는 데이터 클래스
+- **MockCarLocationSource**: 1초마다 차량 위치 정보를 제공하는 Flow 생성
+- **CarLocationRepositoryImpl**: 리포지토리 구현체
+
+#### 도메인 계층 (Domain Layer)
+- **CarLocationRepository**: 차량 위치 데이터에 접근하기 위한 인터페이스
+- **GetCarLocationStreamUseCase**: 차량 위치 정보 Flow를 제공하는 유스케이스
+
+#### 표현 계층 (Presentation Layer)
+- **MapOverlayViewModel**: 차량 위치 데이터를 수집하고 UI 상태 관리
+- **MapOverlayUiState**: 불변 상태 객체로 UI 상태 관리
+
+#### UI 계층
+- **MapOverlayScreen**: 지도와 차량 위치, 경로, HUD를 표시하는 화면
+- **SpeedHudOverlay**: 현재 속도를 표시하는 HUD 컴포넌트
+
+## 성능 최적화
+- StateFlow와 불변 상태 객체를 활용한 효율적인 상태 관리
+- 차량 위치 Flow에 collectLatest 사용으로 백프레셔 처리
+- Key를 사용한 LaunchedEffect로 불필요한 재구성 방지
+
+## 접근성
+- 속도 HUD에 TalkBack을 위한 콘텐츠 설명 추가 ("현재 속도 시속 n킬로미터")
+
+## 테스트
+- CarLocation 데이터 클래스 테스트
+- CarLocationRepository 테스트
+- MapOverlayViewModel 테스트
+
+---
+
 ## 1. 제공 파일
 
 ```
@@ -56,7 +129,7 @@
 | 아키텍처 | **MVVM + Clean Architecture** 권장 (단일 모듈이어도 구조를 구분) |
 | 코루틴 | `collectLatest` · `withTimeoutOrNull` 등으로 **Back-pressure** 대응 |
 | 성능 | 최초 설치 시 **apk ≤ 40 MB**, 테스트 중 **메모리 피크 ≤ 120 MB** |
-| 접근성 | HUD `Text` 에 **TalkBack label**(“현재 속도 시속 n킬로미터”) 추가 |
+| 접근성 | HUD `Text` 에 **TalkBack label**("현재 속도 시속 n킬로미터") 추가 |
 
 ---
 
