@@ -45,6 +45,7 @@ fun MapOverlayScreen(
     val currentLatLng = currentLocation?.toLatLng() ?: DEFAULT_POSITION
     
     // 카메라 상태 생성
+
     val cameraPositionState = rememberCameraPositionState {
         position = CameraPosition.fromLatLngZoom(currentLatLng, 15f)
     }
