@@ -14,7 +14,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.websocket_map"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 36
         versionCode = 1
         versionName = "1.0"
@@ -44,7 +44,6 @@ android {
 }
 
 dependencies {
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -75,4 +74,8 @@ dependencies {
     implementation(libs.androidx.navigation3.runtime.android)
     implementation(libs.androidx.navigation3.ui.android)
     implementation(libs.androidx.lifecycle.viewmodel.navigation3.android)
+
+    // Features
+    implementation(projects.feature.home)
+    implementation(projects.feature.drivers)
 }

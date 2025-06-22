@@ -19,6 +19,10 @@ dependencyResolutionManagement {
     }
 }
 
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+
 rootProject.name = "websocket_map"
 include(":app")
- 
+include(":core:network")
+include(":feature:home")
+include(":feature:drivers")

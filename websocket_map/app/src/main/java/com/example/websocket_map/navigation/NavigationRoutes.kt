@@ -8,4 +8,4 @@ import kotlinx.serialization.Serializable
 data object Home : NavKey
 
 @Serializable
-data object GoogleMap : NavKey
+data object Drivers : NavKey
