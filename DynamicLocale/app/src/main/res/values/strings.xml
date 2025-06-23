@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Dynamic Locale</string>
+    <string name="language">언어</string>
+    <string name="korean">한국어</string>
+    <string name="english">English</string>
+    <string name="japanese">日本語</string>
+    <string name="dark_mode">다크 모드</string>
+    <string name="search_hint">검색어를 입력하세요</string>
+    <string name="search_location">장소 검색</string>
+    <string name="distance_format">%d 미터 떨어짐</string>
+    <string name="no_results">검색 결과가 없습니다</string>
+    <string name="loading">로딩 중...</string>
+</resources>

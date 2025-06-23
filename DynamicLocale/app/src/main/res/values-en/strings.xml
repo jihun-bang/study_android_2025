@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Dynamic Locale</string>
+    <string name="language">Language</string>
+    <string name="korean">한국어</string>
+    <string name="english">English</string>
+    <string name="japanese">日本語</string>
+    <string name="dark_mode">Dark Mode</string>
+    <string name="search_hint">Enter search keyword</string>
+    <string name="search_location">Search location</string>
+    <string name="distance_format">%d meters away</string>
+    <string name="no_results">No search results</string>
+    <string name="loading">Loading...</string>
+</resources>
